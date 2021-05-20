@@ -12,7 +12,7 @@
     "url": "(https://github.com/m7rlin/DiscordBot.git)"
   },
   "author": "Łukasz Gacek Borowski",
-  "license": "MIT",
+  "license": "WŁASNA",
   "dependencies": {
     "bitfield": "^4.0.0",
     "chalk": "^3.0.0",
