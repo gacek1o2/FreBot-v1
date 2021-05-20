@@ -2,6 +2,8 @@
 
 Prosze zapoznać się z warunkami licencji dostępnymi w pliku o nazwie LICENCJA. Nie zapoznanie się z nimi nie zwalnia z przestrzegania ich.
 
+Przed pierwszym uruchomieniem należy uruchomić w wierszu polecenia ścieżkę w której zapisany jest kod i wpisać: "npm i nodemon@2.0.1"
+
 Pliki dostępne w tym repozytorium zawierają kod który po poprawnym skonfigurowaniu i połączeniu z discordem umożliwi korzystanie z bota z funkcjami takimi jak: pomoc, adminpomocy, adm, informacje
 
 W wielu przypadkach potrzebne jest ID kanału/osoby/serwera. Informacje jak uzyskać ID są dostępne tutaj: https://support.discord.com/hc/pl/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-
