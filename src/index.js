@@ -1,0 +1,214 @@
+const Discord = require('discord.js')
+const chalk = require("chalk")
+
+const client = new Discord.Client()
+
+const { token, prefix } = require ("./config/config.js");                         
+const { restart } = require('nodemon');
+
+//info o uruchomieniu
+client.on("ready", () => {
+  console.log(chalk.yellowBright(`Uruchomiono ${client.user.username}`))
+});
+
+
+//tu zaczynają się komendy:
+//@gacek
+client.on('message', (msg) => { 
+  if (msg.content === '<@!571029358462894168>') {
+    msg.reply('Co od niego chcesz?')
+  }
+})
+
+//Fr!pomoc
+client.on('message', (msg) => {
+  const { author, guild } = msg
+  //sprawdza zawartość wiadomości czyli tu są komendy:
+  if (msg.content === 'Fr!pomoc') {
+    msg.reply('**O to moje komendy:**\n**Informacyjne:**\n*adminpomocy* - po wpisaniu tej komendy bot pinguje adminów na kanale do tego przeznaczonym i przekazuje tam informacje kto i gdzie potrzebuje pomocy\n*adm* - wyświetla informacje dotyczące administracji, z kim kiedy się kontaktować, w jakiej sprawie itp.\n*txtpack* - pokazuje informacje dotyczące txt packa Gacka\n*serwermc* - pokazuje informacje dotyczące serwera Minecraft Frezenona i Gacka\n*pomoc* - właśnie tu jesteś\n*prefix* - pokazuje prefix(wsm nwm po co to)\n\n**Zabawa:**\n*ping* - sam se zobacz co robi :P\n\n**Ogólnie do bota:**\n*żyjesz?* - jak odpowie to żyje a jak nie to nie\n\n*Wszystkie moje komendy należy poprzedzić prefixem **Fr!***')
+  }
+})
+//Fr!adm
+client.on('message', (msg) => { 
+  const { author, guild } = msg
+  //sprawdza zawartość wiadomości czyli tu są komendy:
+  if (msg.content === 'Fr!adm') {
+    msg.reply('***O to informacje dotyczące dostępności adminów:***\n\n**Gacek:**\nMa rangę szef(tylko właściciel jest wyżej), prawdopodobnie jest najaktywniejszy z administracji i najłatwiej jest się z nim skontaktować. \n**Dostępny jest pn-sob 8-21**(oczywiście z przerwami) w niedziele też czasami czyta dc. \nZałatwisz u niego wszystko od najprostszego pytania po problem z funkcjonowaniem serwera.\n**W pierwszej kolejności prosze kierować się do niego. Można go pingować**\n\n**Mati:**\nTak jak Gacek ma rangę szef jednak trudniej jest się z nim skontaktować, nie był w stanie określić konkretnych godzin w których jest dostępny\n\n**Frezenon:**\nJest właścicielem serwera więc jeśli chodzi o serwer załatwisz wszystko u niego ale i tak lepiej pisać do Gacka bo ma prawie takie same upawnienia i zarządza botem.\n**Frezenon jest dostępny pn-sob 10-21**\n\nMam nadzięję że się na mnie nie obrażą za to co napisałem u góry XD ~ Gacek')
+  }
+})
+//Fr!ping
+client.on('message', (msg) => {
+  const { author, guild } = msg
+  //sprawdza zawartość wiadomości czyli tu są komendy:
+  if (msg.content === 'Fr!ping') {
+    msg.channel.send('Pong!')
+  }
+})
+//Fr!prefix
+client.on('message', (msg) => {
+  const { author, guild } = msg
+  //sprawdza zawartość wiadomości czyli tu są komendy:
+  if (msg.content === 'Fr!prefix') {
+    msg.reply('Mój prefix to **Fr!** ale chyba to wiesz skoro aktywowałeś tą komende')
+  }
+})
+
+//Fr!help
+client.on('message', (msg) => {
+  const { author, guild } = msg
+  //sprawdza zawartość wiadomości czyli tu są komendy:
+  if (msg.content === 'Fr!help') {
+    msg.reply('Albo nauczysz się pisać po ludzku albo sam se szukaj komend')
+  }
+})
+
+//Fr!żyjesz?
+client.on('message', (msg) => {
+  const { author, guild } = msg
+  //sprawdza zawartość wiadomości czyli tu są komendy:
+  if (msg.content === 'Fr!żyjesz?') {
+    msg.channel.send('tak,tak żyje!')
+  }
+})
+
+//Fr!adminpomocy
+client.on('message', (msg) => {
+  const { author, guild, } = msg
+  //sprawdza zawartość wiadomości czyli tu są komendy:
+  if (msg.content.startsWith('Fr!adminpomocy')) {
+    admpomocy = 'Fr!adminpomocy'
+    var { channel } = msg
+    var { powód } = msg.content.slice(admpomocy.length).trim().split(/ +/g)
+    msg.reply('pomoc została wezwana')
+    var admpomocyID = '<#'+ msg.channel.id + '>'
+    var { channel } = msg.channel.id = '794121720977948693'
+    msg.channel.send('@here\n***'+(author.tag)+'*** POTRZEBUJE POMOCY NA:'+ (admpomocyID)+'\nbo:' +(powód))
+    var { channel } = msg
+    }
+})
+
+//Fr!txtpack
+client.on('message', (msg) => {
+  const { author, guild } = msg
+  //sprawdza zawartość wiadomości czyli tu są komendy:
+  if (msg.content === 'Fr!txtpack') {
+    msg.reply('powiem ci tak\nKiepsko idzie...\njest dużo do zrobienia i jest to nudne\npodsumowując nwm kiedy będzie')
+  }
+})
+
+//Fr!serwermc
+client.on('message', (msg) => {
+  const { author, guild } = msg
+  //sprawdza zawartość wiadomości czyli tu są komendy:
+  if (msg.content === 'Fr!serwermc') {
+    msg.reply('*postępy nad serwerem:*\n-pluginy graficzne(poprawiony tab, napisy na liście serwerów) **100%**\n-pluginy od kar itp. **100%**\n-rangi **50%**\n-kity - **80%** (został 1 do zrobienia)\n-spawn itp. - **100%**\n-ochrona działek - **nie będzie**\n*Informacje*:\nliczba dostępnych slotów-**10**')
+  }
+})
+
+//sprawdzanie kanału:
+client.on('message', (msg) => {
+  const {author, channel, guild } = msg
+  jakikanał = 'zly'
+  var kanał = msg.channel.id
+    if (msg.content === 'Fra!jakiteraz?'  ) {
+      msg.reply(jakikanał)
+    }
+    if (!msg.content.startsWith('fr!')) return
+      if (kanał = '803323238927171604') return 
+       var jakikanał = 'dobry'
+    if (msg.content.startsWith('fr!')) return 
+      if (jakikanał === 'zly') return
+        msg.delete('10',  '5')
+        msg.channel.send('Nie ten kanał byq')
+})
+
+//reakcje na pingi
+//FreBot
+client.on('message', (msg) => {
+  if (msg.content === 'FreBot') {
+    msg.reply('Witaj!\nMój prefix to **Fr!** użyj go przed komendą abym wiedział że to do mnie\naby wyświetlić listę komend wpisz: *Fr!pomoc*')
+  }
+})
+//frebot
+client.on('message', (msg) => {
+  if (msg.content === 'frebot') {
+    msg.reply('Witaj!\nMój prefix to **Fr!** użyj go przed komendą abym wiedział że to do mnie\naby wyświetlić listę komend wpisz: *Fr!pomoc*')
+  }
+})
+//@FreBot
+client.on('message', (msg) => { 
+  if (msg.content === '<@!835124655642902528>') {
+    msg.reply('Witaj!\nMój prefix to **Fr!** użyj go przed komendą abym wiedział że to do mnie\naby wyświetlić listę komend wpisz: *Fr!pomoc*')
+  }
+})
+
+//connect4-mój
+client.on('message', (msg) => {
+  if (msg.content === "Fr!connect4-2") {
+    var {author}=msg
+    const {channel, guild, content} = msg
+    msg.channel.send('osoby chętne do gry niech napiszą: gram w connect4')
+    client.on('message', (msg) => {
+      if (msg.content === "gram w connect4") {
+        var {author} = msg
+        var gracz1 = author
+        msg.channel.send('pierwszy gracz:' + (gracz1))
+        client.on('message', (msg) => {
+          if (msg.content === "gram w connect4") {
+            var {author} = msg
+            var gracz2 = author
+            msg.channel.send('drugi gracz:' + (gracz2))
+            if (gracz1 != gracz2) {
+              msg.channel.send('rozpoczynanie gry...\ngrają:\n'+(gracz1)+'\n'+(gracz2))
+              wygrany = Math.floor(Math.random()*1+2)
+              if (wygrany = 1) {
+                msg.channel.send('wygrywa'+(gracz1))
+            }
+              if (wygrany = 2) {
+                msg.channel.send('wygrywa'+(gracz2)) 
+            }
+          }
+        }
+      })
+    }
+  })
+  }
+})
+//loteria
+client.on('message', (msg) => {
+  if (msg.content === "Fr!loteria") {
+    ileOsób = msg.content.slice(10).trim().split(/ +/g)
+    console.log(ileOsób)
+    var {author}=msg
+    const {channel, guild, content} = msg
+    msg.channel.send('osoby chętne do gry niech napiszą:gram w loterie')
+    client.on('message', (msg) => {
+      if (msg.content === "gram w loterie jako 1") {
+        const {author} = msg
+        const gracz1 = author
+        msg.channel.send('pierwszy gracz:' + (gracz1))
+          if (msg.content === "gram w loterie jako 2") {
+            const {author} = msg
+            const gracz2 = author
+            msg.channel.send('drugi gracz:' + (gracz2))
+            if (gracz1 != gracz2 + gracz1 != 'undefined') {
+              msg.channel.send('rozpoczynanie gry...\ngrają:\n'+(gracz1)+'\n'+(gracz2))
+              ileOsób === 3
+              wygrany = Math.floor(Math.random()*1+(ileOsób))
+              if (wygrany = 1) {
+                msg.channel.send('wygrywa'+(gracz1))
+                const gracz1= '0'
+                const gracz2= '0'
+            }
+              if (wygrany != 1) {
+                msg.channel.send('wygrywa'+(gracz2)) 
+                const gracz1= '0'
+                const gracz2= '0'
+            }
+          }
+        }
+    }
+  })
+  }
+})
+client.login(token);  
